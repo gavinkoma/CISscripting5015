@@ -5,7 +5,13 @@ Created on Tue Jun  7 14:37:54 2022
 
 @author: gavinkoma
 """
+
+#required modules
+
 import random
+from collections import defaultdict
+from collections import Counter
+import operator
 #%% random module
 
 print(random.randint(0,5)) #random interger from 0-5
@@ -183,15 +189,26 @@ with open("hammingOut.txt",'w') as f:
 #significance. Compose a Python program to find the top 5 most frequent k=5 
 #motifs in dna1.dat. Order your output and save it to “Top5Motifs.txt”.
 
-
 k = 5
-dna = 'GTCCGTCGAGGGAAATTGCGCATTCTGG'
-for i in range(len(dna) - k +1):
-    print(dna[i:i+k])
+
+dna = 'GTCCGTCCGAGGGAATTGCGATTCTGG'
+
+# kmers = defaultdict(int)
+
+# for i in range(len(dna) - k + 1):
+#     motif = dna[i:i+k]
+#     kmers[motif] += 1
+    
+# all = sorted(kmers.items(), key=operator.itemgetter(1))
+
+# print (all[-5:]) #print the last 5
 
 
+motifs = Counter([dna[i:i+k] for i in range(len(dna)-k+1)])
+print(motifs.most_common(5))
 
+with open("Top5Motifs.txt",'w') as f:
+    f.write('Top 5 Most Frequent Motifs:\n')
+    f.write(str(motifs.most_common(5)))
 
-
-
-
+#actually really cool question because i didnt know this was a thing
