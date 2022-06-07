@@ -1,0 +1,8 @@
+Total Adenine Count (A): 2476
+Total Cytosine Count (C): 2550
+Total Guanine Count (G): 2486
+Total Thymine Count (T): 2488
+
+Total "GC" Count (GC): 5036
+Total Base Count (ACGT): 10000
+Percent of "GC" content in DNA1: 0.5036
