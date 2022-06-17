@@ -1,0 +1,5 @@
+Base Pair count: 39
+Total Adenine Count (A): 2476
+Total Cytosine Count (C): 2550
+Total Guanine Count (G): 2486
+Total Thymine Count (T) 2488

@@ -9,9 +9,7 @@ Created on Tue Jun  7 14:37:54 2022
 #required modules
 
 import random
-from collections import defaultdict
 from collections import Counter
-import operator
 #%% random module
 
 print(random.randint(0,5)) #random interger from 0-5
@@ -75,11 +73,11 @@ with open("dna1-patternCount.txt",'w') as f:
 #“dna1-revComplement.txt”. (Hint: use extended slicing L[::-1] for reverse 
 #the list of L) 
 
-#smalldna = "GTCCGTCCGAGGGAAATTGCGCATTCTGG"
+smalldna = "GTCCGTCCGAGGGAAATTGCGCATTCTGG"
 #print(smalldna)
 
-contents = contents.replace('\n',"")
-contents = contents.replace('\t',"")
+#contents = contents.replace('\n',"")
+#contents = contents.replace('\t',"")
 
 smalldna = str(contents)
 
@@ -92,6 +90,7 @@ def reverseddna(smalldna):
 #print("reversed complement: " + str(reverseddna(smalldna)))
 
 rc = reverseddna(smalldna)
+print(rc)
 
 with open("dna1-revComplement.txt","w") as f:
     f.write("The reversed complement of the provided DNA is: " + '\n' 
@@ -189,7 +188,7 @@ with open("hammingOut.txt",'w') as f:
 #significance. Compose a Python program to find the top 5 most frequent k=5 
 #motifs in dna1.dat. Order your output and save it to “Top5Motifs.txt”.
 
-k = 5
+k = 7
 
 dna = 'GTCCGTCCGAGGGAATTGCGATTCTGG'
 
