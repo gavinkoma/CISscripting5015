@@ -12,9 +12,11 @@ import subprocess
 from subprocess import check_output
 
 # #matrix size, sort size, number of rep
+if (len(sys.argv) < 2):
+    print("Usage: locality matrixSize repetition\n")
+    exit()
 Nm = int(sys.argv[1])
-Ns = int(sys.argv[2])
-R = int(sys.argv[3])
+R = int(sys.argv[2])
 
 #lets check if right
 N = 5
@@ -209,7 +211,7 @@ subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
 subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
 subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
@@ -222,10 +224,10 @@ w.write("Matrix i-j-k:\n {T}\n".format(T=TotalUs))
 #%% do ikj
 subprocess.run(['cp','template.c','matrix.c'])
 subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
-subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
-subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
+subprocess.run(['sed','-i','s/#jj/k/g','matrix.c'])
+subprocess.run(['sed','-i','s/#kk/j/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
@@ -236,11 +238,11 @@ TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
 w.write("Matrix i-k-j:\n {T}\n".format(T=TotalUs))
 #%% do kij
 subprocess.run(['cp','template.c','matrix.c'])
-subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
-subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
-subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
+subprocess.run(['sed','-i','s/#ii/k/g','matrix.c'])
+subprocess.run(['sed','-i','s/#jj/i/g','matrix.c'])
+subprocess.run(['sed','-i','s/#kk/j/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
@@ -251,11 +253,11 @@ TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
 w.write("Matrix k-i-j:\n {T}\n".format(T=TotalUs))
 #%% do kji
 subprocess.run(['cp','template.c','matrix.c'])
-subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
-subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
+subprocess.run(['sed','-i','s/#ii/k/g','matrix.c'])
 subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
+subprocess.run(['sed','-i','s/#kk/i/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
@@ -266,11 +268,11 @@ TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
 w.write("Matrix k-j-i:\n {T}\n".format(T=TotalUs))
 #%% do jki
 subprocess.run(['cp','template.c','matrix.c'])
-subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
-subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
-subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
+subprocess.run(['sed','-i','s/#ii/j/g','matrix.c'])
+subprocess.run(['sed','-i','s/#jj/k/g','matrix.c'])
+subprocess.run(['sed','-i','s/#kk/i/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
@@ -282,11 +284,11 @@ w.write("Matrix j-k-i:\n {T}\n".format(T=TotalUs))
 
 #%% do jik
 subprocess.run(['cp','template.c','matrix.c'])
-subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
-subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
+subprocess.run(['sed','-i','s/#ii/j/g','matrix.c'])
+subprocess.run(['sed','-i','s/#jj/i/g','matrix.c'])
 subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
 
-subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+subprocess.run(['gcc','-DN='+str(Nm),'-o','Matrix','matrix.c'])
 
 Te = datetime.now()
 for i in range(R):
