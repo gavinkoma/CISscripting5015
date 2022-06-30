@@ -5,6 +5,27 @@ Created on Thu Jun 23 16:33:42 2022
 
 @author: gavinkoma
 """
+import numpy as np
+import sys
+from datetime import datetime
+import subprocess
+from subprocess import check_output
+
+# #matrix size, sort size, number of rep
+Nm = int(sys.argv[1])
+Ns = int(sys.argv[2])
+R = int(sys.argv[3])
+
+#lets check if right
+N = 5
+x = 0
+M1 = np.random.rand(N,N)
+M2 = np.random.rand(N,N)
+
+# if (len(sys.argv)<4):
+#     print("Usage: script, Nm, Ns, R\n")
+#     exit()
+
 # theory to keep in mind:
     
 # A[n,n],B[n,n],C[n,n]
@@ -29,28 +50,6 @@ Created on Thu Jun 23 16:33:42 2022
 #     for j in range(columns):
 #         a.append(int())
 
-import numpy as np
-import sys
-import os
-from datetime import datetime
-import subprocess
-from subprocess import call
-from subprocess import check_output
-
-# #matrix size, sort size, number of rep
-Nm = int(sys.argv[1])
-Ns = int(sys.argv[2])
-R = int(sys.argv[3])
-
-#lets check if right
-N = 5
-x = 0
-M1 = np.random.rand(N,N)
-M2 = np.random.rand(N,N)
-
-# if (len(sys.argv)<4):
-#     print("Usage: script, Nm, Ns, R\n")
-#     exit()
 
 #%%
 Matrix = [[0 for i in range(N)] for j in range (N)]
@@ -217,7 +216,8 @@ for i in range(R):
     subprocess.run(['./Matrix'])
 Te = datetime.now() - Te
 TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
-w.write("Matrix i-j-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+#w.write("Matrix i-j-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix i-j-k:\n {T}\n".format(T=TotalUs))
 
 #%% do ikj
 subprocess.run(['cp','template.c','matrix.c'])
@@ -232,8 +232,8 @@ for i in range(R):
     subprocess.run(['./Matrix'])
 Te = datetime.now() - Te
 TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
-w.write("Matrix i-k-j:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
-
+# w.write("Matrix i-k-j:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix i-k-j:\n {T}\n".format(T=TotalUs))
 #%% do kij
 subprocess.run(['cp','template.c','matrix.c'])
 subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
@@ -247,8 +247,23 @@ for i in range(R):
     subprocess.run(['./Matrix'])
 Te = datetime.now() - Te
 TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
-w.write("Matrix i-j-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+# w.write("Matrix k-i-j:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix k-i-j:\n {T}\n".format(T=TotalUs))
+#%% do kji
+subprocess.run(['cp','template.c','matrix.c'])
+subprocess.run(['sed','-i','s/#kk/k/g','matrix.c'])
+subprocess.run(['sed','-i','s/#ii/i/g','matrix.c'])
+subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
 
+subprocess.run(['gcc','-DN='+str(N),'-o','Matrix','matrix.c'])
+
+Te = datetime.now()
+for i in range(R):
+    subprocess.run(['./Matrix'])
+Te = datetime.now() - Te
+TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
+# w.write("Matrix k-j-i:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix k-j-i:\n {T}\n".format(T=TotalUs))
 #%% do jki
 subprocess.run(['cp','template.c','matrix.c'])
 subprocess.run(['sed','-i','s/#jj/j/g','matrix.c'])
@@ -262,8 +277,8 @@ for i in range(R):
     subprocess.run(['./Matrix'])
 Te = datetime.now() - Te
 TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
-w.write("Matrix i-j-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
-
+# w.write("Matrix j-k-i:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix j-k-i:\n {T}\n".format(T=TotalUs))
 
 #%% do jik
 subprocess.run(['cp','template.c','matrix.c'])
@@ -278,8 +293,8 @@ for i in range(R):
     subprocess.run(['./Matrix'])
 Te = datetime.now() - Te
 TotalUs = float((Te.seconds*1000000+Te.microseconds)/R)
-w.write("Matrix i-j-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
-
+# w.write("Matrix j-i-k:\n {N} {T} {M}\n".format(N=Nm, T=TotalUs, M=pow(Nm,3)/TotalUs))
+w.write("Matrix j-i-k:\n {T}\n".format(T=TotalUs))
 
 
 
