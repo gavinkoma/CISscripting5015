@@ -332,6 +332,5 @@ Te = datetime.now() - Te
 TotalUS = float((Te.seconds * 1000000 + Te.microseconds)/R)
 Mflops = pow(Nm, 3) / TotalUS
 
-w.write(TotalUS,Mflops)
 
 
