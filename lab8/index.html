@@ -38,6 +38,13 @@ Created on Wed Jul 13 10:45:16 2022
     </style>
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/feather.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/lab8.js"></script>
+
   </head>
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -57,26 +64,26 @@ Created on Wed Jul 13 10:45:16 2022
         <ul class="nav flex-column">
           <li class="nav-item" id="showAll">
             <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              <i class="fas fa-home"></i>
+              Hide Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item" id="run61">
             <a class="nav-link" href="#">
               <span data-feather="target"></span>
-              Run Lab6.1
+              Hide Run Lab6.1
             </a>
           </li>
           <li class="nav-item" id="run62">
             <a class="nav-link" href="#">
               <span data-feather="target"></span>
-              Run Lab6.2
+              Hide Run Lab6.2
             </a>
           </li>
           <li class="nav-item" id="report">
             <a class="nav-link" href="#">
               <span data-feather="users"></span>
-              Project Report
+              Hide Project Report
             </a>
           </li>
         </ul>
@@ -117,8 +124,9 @@ Created on Wed Jul 13 10:45:16 2022
 
 
     <div id="Lab62">
-      <h2 class="btn btn-primary btn-block">Lab62. Sort Magic with Data Partitioning</h2>
-      <div class="card">
+      <h2 class="btn btn-primary btn-block" data-toggle="collapse" href="#card62">
+      Lab62. Sort Magic with Data Partitioning</h2>
+      <div class="card" id="card62">
         <h5 class="card-header">Lab6.2</h5>
         <div class="card-body">
           <h5 class="card-title">Sort Magic</h5>
@@ -129,8 +137,9 @@ Created on Wed Jul 13 10:45:16 2022
     
     
     <div id="Report">
-      <h2 class="btn btn-primary btn-block">Project Report</h2>
-      <div class="card">
+      <h2 class="btn btn-primary btn-block" data-toggle="collapse" href="#projectReport">
+      Project Report</h2>
+      <div class="card" id="projectReport">
         <h5 class="card-header">Report</h5>
         <div class="card-body">
           <h5 class="card-title">Project Report</h5>
@@ -142,10 +151,6 @@ Created on Wed Jul 13 10:45:16 2022
     
   
 
-<script src="js/jquery-3.3.1.slim.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/feather.min.js"></script>
-<script src="js/dashboard.js"></script>
 
 </body>
 </html>
