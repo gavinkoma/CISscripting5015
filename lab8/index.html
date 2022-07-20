@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 13 10:45:16 2022
-
-@author: gavinkoma
-"""
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,12 +6,10 @@ Created on Wed Jul 13 10:45:16 2022
     <meta name="description" content="CIS5015-Lab7">
     <meta name="author" content="Gavin Koma based on Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Lab8: DOM and Event Scripting</title>
+    <title>Gavin Lab8</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -38,13 +28,6 @@ Created on Wed Jul 13 10:45:16 2022
     </style>
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/feather.min.js"></script>
-    <script src="js/Chart.min.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/lab8.js"></script>
-
   </head>
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -57,40 +40,41 @@ Created on Wed Jul 13 10:45:16 2022
   </ul>
 </nav>
 
+<!--
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item" id="showAll">
+          <li class="nav-item">
             <a class="nav-link active" href="#">
-              <i class="fas fa-home"></i>
-              Hide Dashboard <span class="sr-only">(current)</span>
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item" id="run61">
+          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="target"></span>
-              Hide Run Lab6.1
+              Run Lab6.1
             </a>
           </li>
-          <li class="nav-item" id="run62">
+          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="target"></span>
-              Hide Run Lab6.2
+              Run Lab6.2
             </a>
           </li>
-          <li class="nav-item" id="report">
+          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="users"></span>
-              Hide Project Report
+              Project Report
             </a>
           </li>
         </ul>
       </div>
     </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"> 
+-->
+    <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">CIS5015: Web Service Scripting</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -104,53 +88,61 @@ Created on Wed Jul 13 10:45:16 2022
         </div>
       </div>
       
-      
-      
-    <div id="Lab61">
-      <h2 class="btn btn-primary btn-block" data-toggle="collapse" href="#card61">
-      Lab61. Locality and Matrix Performance</h2>
-      <div class="card" id="card61">
-        <h5 class="card-header"> Lab6.1</h5>
-        <div class="card-body">
-          <h5 class="card-title">Locality and performance</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Order Correctness</li>
-            <li class="list-group-item">Best Performing Order</li>
-            <li class="list-group-item">Best Scaling</li>
-          </ul>
+      <div id="Lab62">
+        <h2 class="btn btn-primary btn-block" data-toggle="collapse" aria-expanded="true" href="#card62">
+          Lab 6.2 Online</h2>
+        <div class="card collapse" id="card62">
+          <h5 class="text-center card-header">Lab6.2</h5>
+            <div class="card-body">
+              <h5 class="text-center card-title">Locality/Matrix Performance</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="looporder">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Loop Order Correctness Investigation</button>
+              <li class="list-group-item" id="bestperf">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Best Performing Order Investigation</button>
+              <li class="list-group-item" id="bestorder">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Best Order Scalability Investigation</button>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
-
-
-    <div id="Lab62">
-      <h2 class="btn btn-primary btn-block" data-toggle="collapse" href="#card62">
-      Lab62. Sort Magic with Data Partitioning</h2>
-      <div class="card" id="card62">
-        <h5 class="card-header">Lab6.2</h5>
-        <div class="card-body">
-          <h5 class="card-title">Sort Magic</h5>
-          Sort monitor here.
+      </div> 
+     
+      <div id="Lab61">
+        <h2 class="btn btn-primary btn-block" data-toggle="collapse" aria-expanded="true" href="#card61">
+          Lab 6.1 Online</h2>
+        <div class="card collapse" id="card61">
+          <h5 class="text-center card-header">Lab6.1</h5>
+            <div class="card-body">
+              <h5 class="text-center card-title">Matrix Magic</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="looporder">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Bubble Sort Program</button>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
+      </div> 
     
     
-    <div id="Report">
-      <h2 class="btn btn-primary btn-block" data-toggle="collapse" href="#projectReport">
-      Project Report</h2>
-      <div class="card" id="projectReport">
-        <h5 class="card-header">Report</h5>
-        <div class="card-body">
-          <h5 class="card-title">Project Report</h5>
-          This is the report.
+      <div id="Report">
+        <h2 class="text-center btn btn-primary btn-block" data-toggle="collapse" aria-expanded="true" href="#projectreport">
+          Lab 6 Report</h2>
+        <div class="card collapse" id="projectreport">
+          <h5 class="text-center card-header">Lab6.1 </h5>
+            <div class="card-body">
+              <h5 class="text-center card-title">Report</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="looporder">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Details</button>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
-    </main>
-    
+      </div> 
   
-
-
+ 
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/feather.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>
